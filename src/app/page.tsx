@@ -20,7 +20,7 @@ export default function Home() {
         <textarea
           name="schema"
           id="schema"
-          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-1 focus:ring-lime-600"
+          className="my-4 h-40 font-mono bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-1 focus:ring-lime-600"
         />
 
         <label htmlFor="question" className="text-lg font-light">
