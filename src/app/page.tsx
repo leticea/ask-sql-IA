@@ -1,3 +1,16 @@
+import Image from "next/image";
+import logoImage from "../assets/logo.svg";
+
 export default function Home() {
-  return <h1>hello world</h1>;
+  return (
+    <div>
+      <header>
+        <Image src={logoImage} alt="" />
+      </header>
+
+      <form action=""></form>
+
+      <div></div>
+    </div>
+  );
 }
