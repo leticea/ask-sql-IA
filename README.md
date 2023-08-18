@@ -28,10 +28,13 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Nodejs](https://nodejs.org/en/) - v18.12.1
 - [Npm](https://www.npmjs.com/) - 8.19.2
 - [React](https://react.dev/) - 18.2.0
-- [Nextjs](https://nextjs.org/) - 13.4.3
-- [TypeScript](https://nextjs.org/) - 5.0.4
-- [Tailwindcss](https://tailwindcss.com/) - 3.3.2
-- [Lucide-React](https://lucide.dev/)
+- [React-Simple-Code-Editor](https://github.com/react-simple-code-editor/react-simple-code-editor) - ^0.13.1
+- [Nextjs](https://nextjs.org/) - 13.4.17
+- [TypeScript](https://nextjs.org/) - 5.1.6
+- [Tailwindcss](https://tailwindcss.com/) - 3.3.3
+- [Prismjs](https://prismjs.com/) - ^1.29.0
+- [Lucide-React](https://lucide.dev/) - ^0.268.0
+- [OpenAI platform](https://platform.openai.com/)
 
 ## 💻 Projeto
 
