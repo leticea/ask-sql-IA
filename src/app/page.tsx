@@ -85,9 +85,7 @@ export default function Home() {
           padding={16}
           textareaClassName="outline-none "
           className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md"
-          style={{
-            overflowY: "scroll",
-          }}
+          style={{ color: "#d7dae2" }}
         />
       </div>
     </div>

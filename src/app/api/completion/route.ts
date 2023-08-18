@@ -8,9 +8,9 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: Request) {
-  const { schema, question } = await req.json();
+  const { schema, prompt } = await req.json();
 
-  const prompt = `
+  const message = `
     O seu trabalho é criar queries em SQL a partir de um schema SQL abaixo.
 
     Schema SQL:
@@ -18,9 +18,10 @@ export async function POST(req: Request) {
     ${schema}
     """
 
-    A partir do schema acima, escreva uma query SQL a partir da solicitação abaixo:
+    A partir do schema acima, escreva uma query SQL a partir da solicitação abaixo.
+    Me retorne SOMENTE o código SQL, nada além disso.
 
-    Solicitação: ${question}
+    Solicitação: ${prompt}
 
   `.trim();
 
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
     messages: [
       {
         role: "user",
-        content: prompt,
+        content: message,
       },
     ],
   });
