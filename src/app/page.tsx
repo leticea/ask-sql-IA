@@ -5,6 +5,7 @@ import Image from "next/image";
 import logoImage from "../assets/logo.svg";
 import { Trash2, Stars } from "lucide-react";
 import Editor from "react-simple-code-editor";
+import { useChat } from 'ai/react'
 
 import { highlight, languages } from "prismjs";
 import "prismjs/components/prism-sql";
@@ -12,7 +13,20 @@ import "prismjs/themes/prism-dark.css";
 import { inherits } from "util";
 
 export default function Home() {
-  const [code, setCode] = useState("");
+  const [schema, setSchema] = useState("");
+  const [question, setQuestion] = useState("");
+
+  const { messages, handleSubmit } = useChat({
+    api: '/api/completion',
+    body: {
+      question,
+      schema
+    },
+  })
+
+  console.log(messages)
+
+  const result = "";
 
   return (
     <div className="max-w-[430px] mx-auto px-4 pt-12 pb-4">
@@ -24,20 +38,22 @@ export default function Home() {
         </button>
       </header>
 
-      <form className="py-8 w-full flex flex-col text-foam">
+      <form onSubmit={handleSubmit} className="py-8 w-full flex flex-col text-foam">
         <label htmlFor="schema" className="text-lg font-light">
           Cole o seu código SQL aqui:
         </label>
 
         <Editor
           textareaId="schema"
-          value={code}
-          onValueChange={(code) => setCode(code)}
+          value={schema}
+          onValueChange={(code) => setSchema(code)}
           highlight={(code) => highlight(code, languages.sql, "sql")}
           padding={16}
           textareaClassName="outline-none "
           className="my-4 h-40 font-mono bg-blueberry-600 border border-blueberry-300 rounded-md focus-within:ring-1 focus-within:ring-lime-600"
-          style={{ overflowY: "scroll"}}
+          style={{
+            overflowY: "scroll",
+          }}
         />
 
         <label htmlFor="question" className="text-lg font-light">
@@ -46,7 +62,9 @@ export default function Home() {
         <textarea
           name="question"
           id="question"
-          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-1 focus:ring-lime-600"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md outline-none focus:ring-1 focus:ring-lime-600"
         />
 
         <button
@@ -60,9 +78,18 @@ export default function Home() {
 
       <div className="mt-6">
         <span className="text-lg font-light text-foam">Resposta:</span>
-        <textarea
+
+        <Editor
           readOnly
-          className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md px-4 py-3 outline-none focus:ring-1 focus:ring-lime-600"
+          value={result}
+          onValueChange={() => {}}
+          highlight={(code) => highlight(code, languages.sql, "sql")}
+          padding={16}
+          textareaClassName="outline-none "
+          className="my-4 w-full bg-transparent border border-blueberry-300 rounded-md"
+          style={{
+            overflowY: "scroll",
+          }}
         />
       </div>
     </div>
