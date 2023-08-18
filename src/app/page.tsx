@@ -5,28 +5,23 @@ import Image from "next/image";
 import logoImage from "../assets/logo.svg";
 import { Trash2, Stars } from "lucide-react";
 import Editor from "react-simple-code-editor";
-import { useChat } from 'ai/react'
+import { useCompletion } from "ai/react";
 
 import { highlight, languages } from "prismjs";
 import "prismjs/components/prism-sql";
 import "prismjs/themes/prism-dark.css";
-import { inherits } from "util";
 
 export default function Home() {
   const [schema, setSchema] = useState("");
-  const [question, setQuestion] = useState("");
 
-  const { messages, handleSubmit } = useChat({
-    api: '/api/completion',
+  const { completion, handleSubmit, input, handleInputChange } = useCompletion({
+    api: "/api/completion",
     body: {
-      question,
-      schema
+      schema,
     },
-  })
+  });
 
-  console.log(messages)
-
-  const result = "";
+  const result = completion;
 
   return (
     <div className="max-w-[430px] mx-auto px-4 pt-12 pb-4">
@@ -38,7 +33,10 @@ export default function Home() {
         </button>
       </header>
 
-      <form onSubmit={handleSubmit} className="py-8 w-full flex flex-col text-foam">
+      <form
+        onSubmit={handleSubmit}
+        className="py-8 w-full flex flex-col text-foam"
+      >
         <label htmlFor="schema" className="text-lg font-light">
           Cole o seu código SQL aqui:
         </label>
@@ -62,8 +60,8 @@ export default function Home() {
         <textarea
           name="question"
           id="question"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          value={input}
+          onChange={handleInputChange}
           className="my-4 bg-blueberry-600 border border-blueberry-300 rounded-md outline-none focus:ring-1 focus:ring-lime-600"
         />
 
