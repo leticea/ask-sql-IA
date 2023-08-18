@@ -7,7 +7,7 @@
 
 <br>
 
-# Ask SQL
+# Ask SQL With AI
 
 <p align="center">
   <img alt="" src=".github/image.png">
